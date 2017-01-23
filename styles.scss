@@ -1,0 +1,31 @@
+$d: 10px;
+body {
+    overflow: hidden;
+    background-color: #E3F2FD;
+}
+.raindrop {
+    position: absolute;
+    width: $d/2;
+    height: $d;
+    border-radius: 50%;
+    background-color: #448AFF;
+        
+    @for $i from 0 to 400 {
+        $w: random(100)*1vw;
+        $t: (1 + .01*random(200))*1s;
+        
+        &:nth-child(#{$i + 1}) {
+            transform: translate($w, random(100)*1vh);
+            animation: rains#{$i + 1} 1.5s ease-in-out infinite;
+            animation-delay: -.01*random(100)*$t;
+        }
+        @keyframes rains#{$i + 1} {
+            0% {
+                transform: translate($w, -2vh);
+            }
+            100% {
+                transform: translate($w, 100vh);
+            }
+        }
+    }
+}
